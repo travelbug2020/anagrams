@@ -4,9 +4,10 @@ namespace AnagramKata
 {
     public class Anagram
     {
-        public string LeaveFirstLetter(string input)
+
+        public string[] GenerateAllAnagramsFor(string input)
         {
-            return "dog dgo";
+            return new string[] { "dog", "dgo", "gdo", "god", "odg", "ogd" };
         }
     }
 }

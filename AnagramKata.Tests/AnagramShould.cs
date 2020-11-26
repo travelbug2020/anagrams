@@ -14,9 +14,9 @@ namespace AnagramKata.Tests
         {
             var anagram = new Anagram();
 
-            var result = anagram.LeaveFirstLetter("dog");
+            var result = anagram.GenerateAllAnagramsFor("dog");
 
-            Assert.AreEqual("dog dgo", result);
+            Assert.AreEqual(new string[] { "dog","dgo","gdo","god","odg","ogd" }, result);
         }
     }
 }
