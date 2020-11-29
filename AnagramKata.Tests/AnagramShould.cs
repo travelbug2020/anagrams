@@ -18,6 +18,7 @@ namespace AnagramKata.Tests
             var result = _anagram.GenerateAllAnagramsFor("dog");
 
             Assert.AreEqual(new[] { "dog","dgo","odg","ogd","gdo","god" }, result);
+            // dog gdo ogd dog god dgo odg  d  d o g 
         }
 
         [Test]
@@ -27,6 +28,7 @@ namespace AnagramKata.Tests
 
            Assert.AreEqual(new[] { "cat", "cta", "act", "atc", "tca", "tac" },result);
         }
+        // cat tca atc 
 
         [Test]
         public void ReturnAnagram_WithAllPotentialAnagrams_WhenGivenHit()

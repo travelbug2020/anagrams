@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
 namespace AnagramKata
@@ -22,9 +23,20 @@ namespace AnagramKata
             {
                 array = new[] {"hit", "hta", "iht", "ith", "thi", "tih"};
             }
-            
-            
-           
+
+            Dictionary<string, string> checkIFWord = new Dictionary<string, string>();
+            var wordArray = word.ToCharArray();
+            var lengthOfWord = wordArray.Length;
+            for (int letter = 0; letter < lengthOfWord; letter++)
+            {
+                array[letter]=new String(wordArray);
+
+
+                //wordArray
+                //var lastIndex = lengthOfWord - 1;
+                //wordArray[letter];
+                //array[1]=
+            }
             return array;
         }
     }
