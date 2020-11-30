@@ -1,3 +1,4 @@
+using System.Collections;
 using NUnit.Framework;
 
 namespace AnagramKata.Tests
@@ -13,29 +14,35 @@ namespace AnagramKata.Tests
         }
 
         [Test]
-        public void ReturnAnagram_WithAllPotentialAnagrams_WhenGivenDog()
+        public void ReturnEmpty_WhenGeneratingAnagrams_GivenEmptyString()
         {
-            var result = _anagram.GenerateAllAnagramsFor("dog");
+            var result = _anagram.GenerateAllAnagramsFor("");
 
-            Assert.AreEqual(new[] { "dog","dgo","odg","ogd","gdo","god" }, result);
-            // dog gdo ogd dog god dgo odg  d  d o g 
+            Assert.AreEqual(new string[]{},result);
         }
 
-        [Test]
-        public void ReturnAnagram_WithAllPotentialAnagrams_WhenGivenCat()
+        [TestCase("A")]
+        [TestCase("N")]
+        public void ReturnSingleLetter_WhenGeneratingAnagrams_GivenSingleLetter(string letter)
         {
-           var result = _anagram.GenerateAllAnagramsFor("cat");
+            var result = _anagram.GenerateAllAnagramsFor(letter);
 
-           Assert.AreEqual(new[] { "cat", "cta", "act", "atc", "tca", "tac" },result);
+            Assert.AreEqual(new string[] {letter},result);
         }
-        // cat tca atc 
 
-        [Test]
-        public void ReturnAnagram_WithAllPotentialAnagrams_WhenGivenHit()
+        [TestCase("AB",new string[]{"AB","BA"})]
+        [TestCase("CD",new string[]{"CD","DC"})]
+        [TestCase("DE",new string[]{"DE","ED"})]
+        [TestCase("ABC",new string[]{"ABC","ACB","BAC", "BCA", "CAB", "CBA"})]
+        [TestCase("DEF",new string[]{"DEF","DFE","EDF", "EFD", "FDE", "FED"})]
+        public void ReturnAnagram_WhenGeneratingAnagrams_GivenManyLetters(string letters, string[] anagrams)
         {
-            var result = _anagram.GenerateAllAnagramsFor("hit");
+            var result = _anagram.GenerateAllAnagramsFor(letters);
 
-            Assert.AreEqual(new[] { "hit", "hta", "iht", "ith", "thi", "tih" }, result);
+            CollectionAssert.AreEquivalent(anagrams,result);
         }
+
+        
+        
     }
 }

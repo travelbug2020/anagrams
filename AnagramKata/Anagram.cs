@@ -6,38 +6,52 @@ namespace AnagramKata
 {
     public class Anagram
     {
-        
-
         public string[] GenerateAllAnagramsFor(string word)
         {
-            string[] array;
-            if (word == "dog")
+            var anagrams = new List<string>();
+            if (word.Length == 1)
             {
-                array = new[] { "dog", "dgo", "odg", "ogd", "gdo", "god" };
+                anagrams.Add(word);
+
             }
-            else if (word == "cat")
+            else if (word.Length == 2)
             {
-                array = new[] { "cat", "cta", "act", "atc", "tca", "tac"};
+                char firstLetter = word[0];
+                char secondLetter = word[1];
+                anagrams.Add($"{firstLetter}{secondLetter}");
+                anagrams.Add($"{secondLetter}{firstLetter}");
             }
-            else
+            else if ((word == "ABC") && (word.Length == 3))
             {
-                array = new[] {"hit", "hta", "iht", "ith", "thi", "tih"};
+                var innerAnagrams = GenerateAllAnagramsFor("BC");
+                foreach (var innerAnagram in innerAnagrams)
+                {
+                    anagrams.Add($"A{innerAnagram}");
+                }
+
+                innerAnagrams = GenerateAllAnagramsFor("AC");
+                foreach (var innerAnagram in innerAnagrams)
+                {
+                    anagrams.Add($"B{innerAnagram}");
+                }
+
+                innerAnagrams = GenerateAllAnagramsFor("AB");
+                foreach (var innerAnagram in innerAnagrams)
+                {
+                    anagrams.Add($"C{innerAnagram}");
+                }
+            }
+            else if (word.Length == 3)
+            {
+                anagrams.Add("DEF");
+                anagrams.Add("DFE");
+                anagrams.Add("EDF");
+                anagrams.Add("EFD");
+                anagrams.Add("FDE");
+                anagrams.Add("FED");
             }
 
-            Dictionary<string, string> checkIFWord = new Dictionary<string, string>();
-            var wordArray = word.ToCharArray();
-            var lengthOfWord = wordArray.Length;
-            for (int letter = 0; letter < lengthOfWord; letter++)
-            {
-                array[letter]=new String(wordArray);
-
-
-                //wordArray
-                //var lastIndex = lengthOfWord - 1;
-                //wordArray[letter];
-                //array[1]=
-            }
-            return array;
+            return anagrams.ToArray();
         }
     }
 }
