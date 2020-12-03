@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
 
 namespace AnagramKata
@@ -21,34 +22,19 @@ namespace AnagramKata
                 anagrams.Add($"{firstLetter}{secondLetter}");
                 anagrams.Add($"{secondLetter}{firstLetter}");
             }
-            else if ((word == "ABC") && (word.Length == 3))
+            else if ( word.Length == 3 )
             {
-                var innerAnagrams = GenerateAllAnagramsFor("BC");
-                foreach (var innerAnagram in innerAnagrams)
+                for (int index = 0; index < word.ToCharArray().Length; index++)
                 {
-                    anagrams.Add($"A{innerAnagram}");
-                }
+                    var anagramLettersArray = word.ToCharArray().Where(letter => letter != word.ToCharArray()[index]).ToArray();
+                    string anagramLetters = new string(anagramLettersArray);
+                    var innerAnagrams = GenerateAllAnagramsFor(anagramLetters);
+                    foreach (var innerAnagram in innerAnagrams)
+                    {
+                        anagrams.Add($"{word.ToCharArray()[index]}{innerAnagram}");
 
-                innerAnagrams = GenerateAllAnagramsFor("AC");
-                foreach (var innerAnagram in innerAnagrams)
-                {
-                    anagrams.Add($"B{innerAnagram}");
+                    }
                 }
-
-                innerAnagrams = GenerateAllAnagramsFor("AB");
-                foreach (var innerAnagram in innerAnagrams)
-                {
-                    anagrams.Add($"C{innerAnagram}");
-                }
-            }
-            else if (word.Length == 3)
-            {
-                anagrams.Add("DEF");
-                anagrams.Add("DFE");
-                anagrams.Add("EDF");
-                anagrams.Add("EFD");
-                anagrams.Add("FDE");
-                anagrams.Add("FED");
             }
 
             return anagrams.ToArray();

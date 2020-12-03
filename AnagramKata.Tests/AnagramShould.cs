@@ -35,6 +35,7 @@ namespace AnagramKata.Tests
         [TestCase("DE",new string[]{"DE","ED"})]
         [TestCase("ABC",new string[]{"ABC","ACB","BAC", "BCA", "CAB", "CBA"})]
         [TestCase("DEF",new string[]{"DEF","DFE","EDF", "EFD", "FDE", "FED"})]
+
         public void ReturnAnagram_WhenGeneratingAnagrams_GivenManyLetters(string letters, string[] anagrams)
         {
             var result = _anagram.GenerateAllAnagramsFor(letters);
