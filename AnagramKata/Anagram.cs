@@ -9,31 +9,10 @@ namespace AnagramKata
     {
         public string[] GenerateAllAnagramsFor(string word)
         {
-            if (word == "ABB")
-            {
-                return new[] {"ABB", "BAB", "BBA"};
-            }
-
-            if (word == "BCC")
-            {
-                return new[] {"BCC", "CBC", "CCB"};
-            }
-
-            if (word == "CDD")
-            {
-                return new[] {"CDD", "DCD", "DDC"};
-            }
-            
-            if (word.Distinct().Count() == 1)
-            {
-                return new[] {word};
-            }
-
             var anagrams = new List<string>();
             if (word.Length == 1)
             {
                 anagrams.Add(word);
-
             }
             else if (word.Length == 2)
             {
@@ -44,21 +23,17 @@ namespace AnagramKata
             }
             else if ( word.Length >= 3 )
             {
-                for (var index = 0; index < word.ToCharArray().Length; index++)
+                for (var letterIndex = 0; letterIndex < word.Length; letterIndex++)
                 {
-                    var anagramLettersArray = word.ToCharArray().Where(letter => letter != word.ToCharArray()[index]).ToArray();
-                    var anagramLetters = new string(anagramLettersArray);
-                    var innerAnagrams = GenerateAllAnagramsFor(anagramLetters);
+                    var wordsRemainingLetters = word.Remove(letterIndex,1);
+                    var innerAnagrams = GenerateAllAnagramsFor(wordsRemainingLetters);
                     foreach (var innerAnagram in innerAnagrams)
                     {
-                        anagrams.Add($"{word.ToCharArray()[index]}{innerAnagram}");
-
+                        anagrams.Add($"{word.ToCharArray()[letterIndex]}{innerAnagram}");
                     }
                 }
             }
-
-
-            return anagrams.ToArray();
+            return anagrams.Distinct().ToArray();
         }
     }
 }

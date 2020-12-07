@@ -57,9 +57,10 @@ namespace AnagramKata.Tests
             CollectionAssert.AreEquivalent(new string[] { letters }, result);
         }
 
-        [TestCase("ABB", new string[] { "ABB", "BAB", "BBA" })]
-        [TestCase("BCC", new string[] { "BCC", "CBC", "CCB" })]
-        [TestCase("CDD", new string[] { "CDD", "DCD", "DDC" })]
+        [TestCase("ABB", new[] { "ABB", "BAB", "BBA" })]
+        [TestCase("BCC", new[] { "BCC", "CBC", "CCB" })]
+        [TestCase("CDD", new[] { "CDD", "DCD", "DDC" })]
+        [TestCase("HELLLO", new[] { "HELLLO", "HELLOL", "HELOLL", "HEOLLL", "HLELLO", "HLELOL", "HLEOLL", "HLLELO", "HLLEOL", "HLLLEO", "HLLLOE", "HLLOEL", "HLLOLE", "HLOELL", "HLOLEL", "HLOLLE", "HOELLL", "HOLELL", "HOLLEL", "HOLLLE", "EHLLLO", "EHLLOL", "EHLOLL", "EHOLLL", "ELHLLO", "ELHLOL", "ELHOLL", "ELLHLO", "ELLHOL", "ELLLHO", "ELLLOH", "ELLOHL", "ELLOLH", "ELOHLL", "ELOLHL", "ELOLLH", "EOHLLL", "EOLHLL", "EOLLHL", "EOLLLH", "LHELLO", "LHELOL", "LHEOLL", "LHLELO", "LHLEOL", "LHLLEO", "LHLLOE", "LHLOEL", "LHLOLE", "LHOELL", "LHOLEL", "LHOLLE", "LEHLLO", "LEHLOL", "LEHOLL", "LELHLO", "LELHOL", "LELLHO", "LELLOH", "LELOHL", "LELOLH", "LEOHLL", "LEOLHL", "LEOLLH", "LLHELO", "LLHEOL", "LLHLEO", "LLHLOE", "LLHOEL", "LLHOLE", "LLEHLO", "LLEHOL", "LLELHO", "LLELOH", "LLEOHL", "LLEOLH", "LLLHEO", "LLLHOE", "LLLEHO", "LLLEOH", "LLLOHE", "LLLOEH", "LLOHEL", "LLOHLE", "LLOEHL", "LLOELH", "LLOLHE", "LLOLEH", "LOHELL", "LOHLEL", "LOHLLE", "LOEHLL", "LOELHL", "LOELLH", "LOLHEL", "LOLHLE", "LOLEHL", "LOLELH", "LOLLHE", "LOLLEH", "OHELLL", "OHLELL", "OHLLEL", "OHLLLE", "OEHLLL", "OELHLL", "OELLHL", "OELLLH", "OLHELL", "OLHLEL", "OLHLLE", "OLEHLL", "OLELHL", "OLELLH", "OLLHEL", "OLLHLE", "OLLEHL", "OLLELH", "OLLLHE", "OLLLEH" })]
         public void ReturnAnagram_WhenGeneratingAnagrams_GivenDuplicateLetters(string letters, string[] anagrams)
         {
             var result = _anagram.GenerateAllAnagramsFor(letters);
